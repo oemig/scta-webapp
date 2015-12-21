@@ -1,13 +1,11 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-<web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
   	<servlet-name>HelloWorldServlet</servlet-name>
-  	<display-name>HelloWorldServlet</display-name>
-  	<description></description>
   	<servlet-class>net.oemig.webapp.HelloWorldServlet</servlet-class>
   	<load-on-startup>2</load-on-startup>
   </servlet>
@@ -16,15 +14,17 @@
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>net.oemig.jersey.examples</param-value>
+      <param-value>net.oemig.jersey.examples, net.oemig.scta.rest</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet>
   	<servlet-name>PasswordChecker</servlet-name>
-  	<display-name>PasswordChecker</display-name>
-  	<description></description>
   	<servlet-class>net.oemig.webapp.password.PasswordChecker</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Register</servlet-name>
+  	<servlet-class>net.oemig.scta.servlet.Register</servlet-class>
   </servlet>
  <servlet-mapping>
   	<servlet-name>HelloWorldServlet</servlet-name>
@@ -37,5 +37,9 @@
   <servlet-mapping>
   	<servlet-name>PasswordChecker</servlet-name>
   	<url-pattern>/PasswordChecker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Register</servlet-name>
+  	<url-pattern>/Register</url-pattern>
   </servlet-mapping>
 </web-app>

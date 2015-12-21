@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 // The browser requests per default the HTML MIME type.
 
 //Sets the path to base URL + /hello
+//http://localhost:8080/webapp/rest/hello
+
 @Path("/hello")
 public class Hello {
 
