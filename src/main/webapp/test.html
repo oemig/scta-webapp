@@ -21,7 +21,7 @@ function test(){
 	var user=JSON.parse(jsonString);
 	console.log("the object-->"+JSON.stringify(user));
 	
-	xhr.send(encodeURI(JSON.stringify(user)));
+	xhr.send(JSON.stringify(user));
 }
 
 </script>

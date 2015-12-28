@@ -6,14 +6,15 @@
 <title>Insert title here</title>
 <script>
 function test(){
+	var s=JSON.parse('{"name":"test"}');
 	jQuery.ajax ({
-	    url: "rest/admin/post",
+	    url: "/webapp/rest/admin/post",
 	    type: "POST",
-	    data: {"name":"test"},
+	    data: JSON.stringify(s),
 	    dataType: "json",
 	    contentType: "application/json",
 	    accepts: "text/plain",
-	    success: function(){
+	    success: function(data, status, xhr){
 	        alert("done");
 	    }
 	}); 
