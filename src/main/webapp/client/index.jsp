@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>SCTA RESTful-WS client prototype</title>	
+	</head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		function init(){
+			$("#data").show();
+			if(!$("#data").text()){
+				$("#login").show();
+			}else{
+				$("#login").hide();
+			}
+			
+			$("#wait").hide();
+			$("#document").hide();
+			
+		}
+		
+		function register(user){
+			$("#data").text(user);
+			$("#login").hide();
+			scta_register(user);
+		}
+		
+		
+		function scta_register(user){
+			var u=new Object();
+			u.name=user;
+			jQuery.ajax ({
+			    url: "/webapp/rest/admin/post",
+			    type: "POST",
+			    data: JSON.stringify(u),
+			    dataType: "json",
+			    contentType: "application/json",
+			    accepts: "text/plain",
+			    success: function(data, status, xhr){
+			        alert("done");
+			    }
+			}); 
+		}
+	</script>
+<body onload="init()">
 
-<body>
-<h1>RESTful-WS client prototype</h1>
-Become a study participant
-
-
-<form action="../rest/admin/register" method="POST">
-  <label for="user"></label>
-  <input name="user" />
-  <br/>
-
-  <br/>
-
-  <input type="submit" value="Submit" />
-
-
-
-  </form>
-      <c:if test="${param.guess=='Java'}">You guessed it!</c:if>
-      <c:if test="${param.guess!='Java'}">You are wrong</c:if>
-      
-       1 + 2 + 3 = <c:out value="${1 + 2 + 3}" />
-
-    <form action="index.jsp" method="POST">Guess what computer language
-                        I am thinking of?
-    <input type="text" name="guess" />
-
-    <input type="submit" value="Try!" />
-    </form>
+<div id="data"></div>
+<div id="login">
+	<label for="user">User name: <input id="user" name="user" /></label>
+	<button onclick="register($('#user').val())">Register</button>
+</div>
+<div id="wait">waiting...</div>
+<div id="document">document...</div>
 
 </body>
 </html>
