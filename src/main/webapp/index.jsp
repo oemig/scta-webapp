@@ -28,7 +28,7 @@ function getState()
         }
     }
     
-    xmlhttp.open("GET","rest/admin/users",true);
+    xmlhttp.open("GET","rest/admin/participants",true);
     xmlhttp.send();
 }
 </script>

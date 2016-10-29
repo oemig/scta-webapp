@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import net.oemig.scta.Administration;
-import net.oemig.scta.model.data.User;
+import net.oemig.scta.Participant;
 
 /**
  * {@link AdministrationResource}: this is the place where the REST calls come in.
@@ -44,32 +44,32 @@ import net.oemig.scta.model.data.User;
 //http://localhost:8080/webapp/rest/admin
 @Path("/admin") 
 public class AdministrationResource {
-	
+
+	  /**
+	   * Retrieves and returns all currently registered participants
+	   * @return a collection of participants (all)
+	   */
 	  @GET
-	  @Path("users")
+	  @Path("participants")
 	  @Produces(MediaType.APPLICATION_JSON)
-	  public Collection<User> getUsers() {
+	  public Collection<Participant> getParticipants() {
 		  System.out.println("TALKED TO JSON CLIENT");
-	    return new Administration().getUsers();
+	    return new Administration().getParticipants();
 	  }
 	  
-//	  @POST
-//	  @Path("register")
-//	  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	  @Produces(MediaType.TEXT_PLAIN)
-//	  public String register(@FormParam("user") String aUser,
-//			  	@Context HttpServletResponse aResponse) throws IOException{
-//		  new Administration().addUser(new User(aUser));
-//		  
-//		  return "ok";
-//	  }
-	  
+
+	  /**
+	   * Creates the given participant as new.
+	   * @param aParticipant
+	   * @return
+	   * @throws IOException
+	   */
 	  @POST
-	  @Path("post")
+	  @Path("participants")
 	  @Consumes(MediaType.APPLICATION_JSON)
-	  public String post(User aUser) throws IOException{
+	  public String post(Participant aParticipant) throws IOException{
 		  System.out.println("TALKED TO JSON.REGISTER	");
-		  new Administration().addUser(aUser);
+		  new Administration().addParticipant(aParticipant);
 		  
 		  return "ok";
 	  }

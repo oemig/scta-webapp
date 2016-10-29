@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.oemig.scta.Administration;
+import net.oemig.scta.Participant;
 import net.oemig.scta.model.data.User;
 
 /**
@@ -32,7 +33,7 @@ public class Register extends HttpServlet {
 		String user=request.getParameter("user");
 		
 		Administration a=new Administration();
-		a.addUser(new User(user));
+		a.addParticipant(new Participant(user));
 		
 //		Collection<User>s=a.getUsers();
 		response.getWriter().append("Ok: User added");

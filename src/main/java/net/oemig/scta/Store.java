@@ -6,8 +6,6 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-import net.oemig.scta.model.data.User;
-
 /**
  * Singleton implementation!
  * 
@@ -26,20 +24,20 @@ public class Store {
 		return instance;
 	}
 
-	private Map<String, User> users;
+	private Map<String, Participant> participants;
 	private Map<Date,String> log;
 
 	private Store(){
-		users=Maps.newHashMap();
+		participants=Maps.newHashMap();
 		log=Maps.newHashMap();
 	}
 	
-	public void addUser(User aUser){
-		users.put(aUser.getName(), aUser);
+	public void addParticipant(Participant aParticipant){
+		participants.put(aParticipant.getName(), aParticipant);
 	}
 	
-	public Collection<User>getUsers(){
-		return users.values();
+	public Collection<Participant>getParticipants(){
+		return participants.values();
 	}
 	
 	public void log(String aSource, String aLogEntry){

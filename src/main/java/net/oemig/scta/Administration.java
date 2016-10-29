@@ -2,20 +2,18 @@ package net.oemig.scta;
 
 import java.util.Collection;
 
-import net.oemig.scta.model.data.User;
-
 public class Administration {
 
 	public Administration(){
 		
 	}
 	
-	public void addUser(User aUser){
-		Store.getInstance().addUser(aUser);
+	public void addParticipant(Participant aParticipant){
+		Store.getInstance().addParticipant(aParticipant);
 	}
 	
-	public Collection<User> getUsers(){
-		return Store.getInstance().getUsers();
+	public Collection<Participant> getParticipants(){
+		return Store.getInstance().getParticipants();
 	}
 	
 	public void log(String aSource, String aLogEntry){
