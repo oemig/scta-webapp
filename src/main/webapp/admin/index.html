@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SCTA Administration</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../js/scta-min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+<link href="../css/scta.css" rel="stylesheet">
+</head>
+<body onload="init()">
+<script>
+	
+	//global variables
+	var ip;
+		
+	Scta.getIpAddress(handleIpAddress);
+	
+	
+	function handleIpAddress(result){
+		$("#footer").append(" - Your IP address: "+result.ip+" ("+result.country_code+")"); 
+		ip=result.ip;
+	}
+	
+	function init(){
+		//hide all
+		$("#logo").hide();
+		$("#footer").hide();
+		$("#listparticipants").hide();
+		$("#listruns").hide();
+		$("#createrun").hide();
+		
+		
+		$("#logo").fadeIn(1600, function(){});
+		$("#footer").fadeIn(4800, function(){});
+		
+		Scta.startAdminLoop();
+		
+	}
+	
+	
+
+</script>
+
+<div id="logo">
+	<img src="../img/logo_uni-bamberg.svg" width="100" height="100" style="float: left;"/>
+	<img src="../img/logo_hci-bamberg.png" style="float: right;"/>
+</div>
+<div id="header"><h1>SCTA Adminstration Console</h1></div>
+<div id="message"></div>
+<div id="createrun">
+	<input id="run" type="text"/>
+	<button type="button" onclick="Scta.createRun($('#run').val())">Create Run!</button>
+</div>
+<div id="content">
+	<h2>Runs</h2>
+	<table id="runs"></table>
+	<button type="button" onclick="Scta.getRuns()">Update</button> 
+
+	<h2>Participants</h2>
+	<table id="participants"></table>
+	<button type="button" onclick="Scta.getParticipants()">Update</button>
+</div>
+<div id="footer">&copy; Christoph Oemig, 2017 - SCTA Webapp Version 1.1</div>
+</body>
+</html>

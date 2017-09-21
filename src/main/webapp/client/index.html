@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>SCTA Participant</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="../js/scta-min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+	<link href="../css/scta.css" rel="stylesheet">
+</head>
+<body onload="init()">
+<script>
+	
+	//global variables
+	//FIXME move into scta class
+	var ip;
+	var participantId="unknown";
+	var participantName="unknown";
+	var questionCounter=0;
+	var questions;
+	var startTime;
+	var endTime;
+	
+	//retrieve ip address
+	Scta.getIpAddress(handleIpAddress);
+	
+	
+	function handleIpAddress(result){
+		$("#footer").append(" - Your IP address: "+result.ip+" ("+result.country_code+")"); 
+		ip=result.ip;
+	}
+	function fadeLogin(){
+		$("#login").fadeOut(800, function(){});
+		$("#message").fadeIn(1600,function(){});
+	}
+	function init(){
+		//hide all
+		$("#logo").hide();
+		$("#login").hide();
+		//$("#message").hide();
+		$("#document").hide();
+		$("#footer").hide();
+		$("#overlay").hide();
+		$("#evaluation").hide();
+		
+		$("#logo").fadeIn(1600, function(){});
+		//$("#login").fadeIn(3200, function(){});
+		$("#footer").fadeIn(4800, function(){});
+		
+		Scta.startLoop();
+	}
+	
+	
+
+</script>
+<div id="overlay">
+	<div id="questionbox">
+		<div id="questiontext"></div>
+		<button id="button-answer-one" onclick="Scta.saveResponseData($('#button-answer-one').html())"></button>
+		<br>
+		<button id="button-answer-two" onclick="Scta.saveResponseData($('#button-answer-two').html())"></button>
+		<br>
+		<button id="button-answer-three" onclick="Scta.saveResponseData($('#button-answer-three').html())"></button>
+	</div>
+</div>
+<div id="logo">
+	<img src="../img/logo_uni-bamberg.svg" width="100" height="100" style="float: left;"/>
+	<img src="../img/logo_hci-bamberg.png" style="float: right;"/>
+</div>
+<div id="header"><h1>SCTA Participant</h1></div>
+<div id="message"></div>
+<div id="login">
+	<input id="participant" type="text"/>
+	<button type="button" onclick="Scta.register($('#participant').val())">Sign up</button>
+</div>
+
+<div id="document">
+  <div id="announcement">
+  <label>Please count each of the following letters in a joint effort (i.e. a=?, b=? etc.).</label>
+  </div>
+  <br>
+  <div id="letters"></div>
+  <br>
+  <div id="result">
+	  Counting Result<br>
+	  <label>Letter: <select id="letter" name="letter"></select></label> <label>Quantity: <input id="quantity" type="text" size="3" maxlength="3"/></label> <button onclick="Scta.sendCountData(participantId,$('#letter').val(),$('#quantity').val())">Submit</button>
+  </div>
+</div>
+<div id="evaluation"></div>
+<div id="footer">&copy; Christoph Oemig, 2017 - SCTA Webapp Version 1.1</div>
+</body>
+</html>
