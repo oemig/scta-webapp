@@ -1,6 +1,6 @@
 package net.oemig.scta;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class Letters {
 	public static final String create(){
