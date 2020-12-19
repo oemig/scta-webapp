@@ -46,7 +46,7 @@
 		
 		$("#logo").fadeIn(1600, function(){});
 		//$("#login").fadeIn(3200, function(){});
-		$("#footer").fadeIn(4800, function(){});
+		$("#footer").html(Scta.getCopyright()+" - "+Scta.getVersion()).fadeIn(4800, function(){});
 		
 		Scta.startLoop();
 	}
@@ -88,6 +88,6 @@
   </div>
 </div>
 <div id="evaluation"></div>
-<div id="footer">&copy; Christoph Oemig, 2017 - SCTA Webapp Version 1.1</div>
+<div id="footer"></div>
 </body>
 </html>

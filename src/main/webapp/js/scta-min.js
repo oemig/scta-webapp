@@ -23,6 +23,15 @@ function defineScta() {
 	  
   },
   
+  getCopyright: function() {
+	  var year=new Date().getFullYear();
+	  return "&copy; Christoph Oemig 2011-"+year;
+  },
+  
+  getVersion: function() {
+	  return "SCTA Version 2.1";
+  },
+  
   register: function(aParticipantName){
 		console.log(aParticipantName);
 		

@@ -72,6 +72,10 @@ tr:nth-child(even) {
 	font-size: 14px;
 }
 
+#openissues {
+	font-size: 10px;
+}
+
 #overlay {
     position: fixed;
     display: none;

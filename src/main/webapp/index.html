@@ -15,12 +15,6 @@
 	//global variables
 	//FIXME move into scta class
 	var ip;
-	var participantId="unknown";
-	var participantName="unknown";
-	var questionCounter=0;
-	var questions;
-	var startTime;
-	var endTime;
 	
 	//retrieve ip address
 	Scta.getIpAddress(handleIpAddress);
@@ -30,64 +24,71 @@
 		$("#footer").append(" - Your IP address: "+result.ip+" ("+result.country_code+")"); 
 		ip=result.ip;
 	}
-	function fadeLogin(){
-		$("#login").fadeOut(800, function(){});
-		$("#message").fadeIn(1600,function(){});
-	}
 	function init(){
 		//hide all
 		$("#logo").hide();
-		$("#login").hide();
 		//$("#message").hide();
-		$("#document").hide();
 		$("#footer").hide();
-		$("#overlay").hide();
-		$("#evaluation").hide();
 		
 		$("#logo").fadeIn(1600, function(){});
 		//$("#login").fadeIn(3200, function(){});
-		$("#footer").fadeIn(4800, function(){});
-		
+		$("#footer").html(Scta.getCopyright()+" - "+Scta.getVersion()).fadeIn(4800, function(){});
 		
 	}
 	
 	
 
 </script>
-<div id="overlay">
-	<div id="questionbox">
-		<div id="questiontext"></div>
-		<button id="button-answer-one" onclick="Scta.saveResponseData($('#button-answer-one').html())"></button>
-		<br>
-		<button id="button-answer-two" onclick="Scta.saveResponseData($('#button-answer-two').html())"></button>
-		<br>
-		<button id="button-answer-three" onclick="Scta.saveResponseData($('#button-answer-three').html())"></button>
-	</div>
-</div>
+
 <div id="logo">
 	<img src="img/logo_uni-bamberg.svg" width="100" height="100" style="float: left;"/>
 	<img src="img/logo_hci-bamberg.png" style="float: right;"/>
 </div>
 <div id="header"><h1>SCTA Overview</h1></div>
 <div id="message"></div>
-<div id="login">
-	<input id="participant" type="text"/>
-	<button type="button" onclick="Scta.register($('#participant').val())">Sign up</button>
+<div id="content">
+	<div id="publications">
+		<h2>Publications</h2>
+		<ul>
+			<li>Oemig, C. and Gross, T. "How to Determine the Effectiveness and Efficiency of Coordination and Awareness Support Systems". Mensch & Computer Workshopband 2017
+			<li>Oemig, C. and Gross, T. "I know who, but not how many!" - Forgetting in Collaborative Settings. In Mensch & Computer - 16. Fachuebergreifende Konferenz fuer interaktive und kooperative Medien - M&C 2016 (Sept. 4-7, Aachen, Germany). Walter de Gruyter GmbH, Bonn, 2016. pp. 1-4. doi:10.18420/muc2016-mci-0256.
+			<li>Oemig, C. and Gross, T. The Awareness-/Coordination-Support-System Paradox. In Mensch & Computer - 14. Fachuebergreifende Konferenz fuer interaktive und kooperative Medien - M&C 2014 (Aug. 31-Sept. 3, Munich, Germany). Koch, M., Butz, A. and Schlichter, J., eds. Oldenbourg, Munich, 2014. pp. 125-134. (ISBN: 978-3-11-034448-6).
+			<li>Oemig, C. and Gross, T. SCTA Tracer: A Distributed Environment for Standardised Awareness Support Assessment. In Proceedings of the Twentieth Euromicro Conference on Parallel, Distributed, and Network-Based Processing - PDP 2012 (Feb. 15-17, Garching, Germany). IEEE Computer Society Press, Los Alamitos, 2012. pp. 52-56. (ISBN: 978-0-7695-44633-9).
+			<li>Oemig, C. and Gross, T. Illusive, Ineffective, Inefficient, Ideal: Standardized Coordination Task Assessment of Awareness Support. In Mensch & Computer - 11. Fachuebergreifende Konferenz fuer interaktive und kooperative Medien - M&C 2011 (Sept. 11-14, Chemnitz, Germany). Oldenbourg, Munich, 2011. pp. 353-356. (ISBN: 978-3-486-71235-3).
+		</ul>
+	</div>
+	<div id="diary">
+		<h2>Diary</h2>
+		<h3>2019</h3>
+		<ul>
+			<li>Mensch und Computer Konferenz in Hamburg - Poster
+			<li>OLN Uni Bamberg (July 25, 2019)
+		</ul>
+		<h3>2018</h3>
+		<ul>
+			<li>PHD Workshop (Bad Staffelstein)
+			<li>OLN Uni Bamberg (July 12, 2018) - Standardised Coordination Task Assessments (SCTA) - DEMO
+		</ul>
+		<h3>2017</h3>
+		<ul>
+			<li>OLN Uni Bamberg
+			<li>Mensch und Computer Konferenz in Regensburg - Demo (Publ. Link)		
+		</ul>
+	</div>
+	<div id="openissues">
+		<h2>Open Issues</h2> 
+		<ul>
+			<li>Neustart nach abgeschlossenen Run. Momentan muss die Applikation immer durchgestartet werden.
+			<li>Awareness Anzeige/Visualisierung des Run für den Admin.
+			<li>Automatisierung des Datumupdates im Dateifooter (drei Dateien: index, participant-index, admin-index) 
+			<li>Replace Google Charts with D3
+			<li>Run-Starter (iOS App)
+			<li>Traceland
+		</ul>
+	</div>
+
 </div>
 
-<div id="document">
-  <div id="announcement">
-  <label>Please count each of the following letters in a joint effort (i.e. a=?, b=? etc.).</label>
-  </div>
-  <br>
-  <div id="letters"></div>
-  <br>
-  <div id="result">
-	  Counting Result<br>
-	  <label>Letter: <select id="letter" name="letter"></select></label> <label>Quantity: <input id="quantity" type="text" size="3" maxlength="3"/></label> <button onclick="Scta.sendCountData(participantId,$('#letter').val(),$('#quantity').val())">Submit</button>
-  </div>
-</div>
-<div id="evaluation"></div>
-<div id="footer">&copy; Christoph Oemig, 2017 - SCTA Webapp Version 1.1</div>
+<div id="footer"></div>
 </body>
 </html>
